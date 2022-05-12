@@ -17,12 +17,12 @@ veg <- st_read("./gis_files/vegetation/vegetation.shp")
 
 # Cropping and reprojection of vegetation map -----------------------------
 
-## Cropping the vegetation map
-veg <- st_crop(veg, aoi)
-# changing the CRS of the vegetation map to match the track site
-veg <- st_transform(veg, st_crs(site))
-# writing the new cropped and projected vegetation map to 
-st_write(veg, "./gis_files/vegetation/vegetation.shp", append = FALSE)
+# ## Cropping the vegetation map
+# veg <- st_crop(veg, aoi)
+# # changing the CRS of the vegetation map to match the track site
+# veg <- st_transform(veg, st_crs(site))
+# # writing the new cropped and projected vegetation map to 
+# st_write(veg, "./gis_files/vegetation/vegetation.shp", append = FALSE)
 
 # End of cropping and reprojection ----------------------------------------
 

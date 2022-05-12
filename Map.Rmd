@@ -20,9 +20,9 @@ knitr::include_graphics("./gis_files/IMG_0008.jpg")
 
 <br>
 
-# Method:
+# Method
 
-While on site the coordinates of the centre of the tracksite were captured. This spot is the green dot that is visible on the map. The GPS coordinates were in the WGS84 CRS.
+While on site, the coordinates of the centre of the tracksite were captured. This spot is visible on the map as a green dot. The GPS coordinates were in the WGS84 coordinate reference system (CRS).
 The vegetation bioregion data were obtained from the SANBI online database. The "2018 Final Vegetation Map of South Africa, Lesotho and Swaziland" was used. This map used a custom CRS that was called "AEA_RSA_WGS84" in the metadata.
 
 Since I was only interested in the areas surrounding the track site, and the vegetation map took up almost 1GB of storage, an area of interest around the track site was defined, and the map was cropped to that extent. Then the cropped vegetation map was reprojected into the WGS84 CRS so that it would match with the track site. The final "vegetation.shp" file included in this repository is the cropped and reprojected version.
@@ -52,6 +52,19 @@ These are the data sets that were used for the cropping and reprojecting.
 # veg <- st_read("./gis_files/VEGMAP2018_AEA_16082019Final/NVM2018_AEA_V22_7_16082019_final.shp")
 # aoi <- st_read("./gis_files/area_of_interest/aoi.shp")
 ```
+
+<br>
+Transforming the vegetation map for use in the interactive map
+```{r cropping, warning=F, message=F}
+# ## Cropping the vegetation map
+# veg <- st_crop(veg, aoi)
+# # changing the CRS of the vegetation map to match the track site
+# veg <- st_transform(veg, st_crs(site))
+# # writing the new cropped and projected vegetation map to 
+# st_write(veg, "./gis_files/vegetation/vegetation.shp", append = FALSE)
+```
+
+<br>
 These are the 2 data sets that were used in creating the final map
 ```{r site, warning=F, message=F}
 site <- st_read("./gis_files/temnospondyl_tracksite.kmz")
@@ -81,11 +94,10 @@ leaflet() %>%
 **Figure 1.** _Interactive map showing the different vegetative bioregions surrounding the Permian track site_  
 <br>
 
-## Discussion:
 Knowing the regions surrounding that track site can allow us to look at past paleontological work from the Karoo and see the relative abundance of fossils by region. This can guide decisions to be made about searching for other surfaces in the area. My supervisor also stressed the importance of biozonation, bioregions, and biostratigraphy in determining the characteristics of the animal of interest in my project. This map helps with one of those aspects, however there are currently no spatial geological biostratigraphy databases of the Karoo available to the public. Should this database ever become available it will be added as another layer to this map.
 
 <br>
 
 ## References
 South African National Biodiversity Institute . 2018 Final Vegetation Map of South Africa, Lesotho and Swaziland [Vector] 2018. Available from the Biodiversity GIS website, downloaded on 9 May 2022 
-<br?
+<br>
