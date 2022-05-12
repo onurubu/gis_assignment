@@ -10,8 +10,7 @@ library(leaflet)
 library(htmltools)
 
 site <- st_read("./gis_files/temnospondyl_tracksite.kmz")
-aoi <- st_read("./gis_files/aoi/aoi.shp")
-veg <- st_read("./gis_files/vegetation.shp")
+veg <- st_read("./gis_files/vegetation/vegetation.shp")
 
 
 factpal <- colorFactor(topo.colors(10), domain =  veg$BIOREGION_)
